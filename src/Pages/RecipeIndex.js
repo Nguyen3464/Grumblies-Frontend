@@ -23,7 +23,7 @@ const RecipeIndex = ({ recipes }) => {
           <p>instructions: {recipe.instructions}</p>
           <p>protiens: {recipe.protiens}</p>
           <p>servings: {recipe.servings}</p>
-          <p>substitution: {recipe.substitution}</p> {/* Fixed typo */}
+          <p>substitution: {recipe.substitution}</p> 
           <p>sugars: {recipe.sugars}</p>
         </div>
       ))}

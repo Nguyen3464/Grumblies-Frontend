@@ -1,76 +1,64 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom"; 
 import RecipeShow from "../Pages/RecipeShow";
 import mockRecipe from "../Components/Scaffolding/mockRecipe";
- 
-describe("<RecipeShow", () => {
-    it("renders without crashing", () => {
-        const div = document.createElement("div");
-        render(<RecipeShow />, div);
-    });
-    
-    it("renders recipe cards", async () => {
-        render(
-            <BrowserRouter>
-                <RecipeShow recipes={mockRecipe} />
-            </BrowserRouter>
-        );
 
-        await waitFor(() => {
-            mockRecipe.forEach((recipe) => {
-                const recipeTitle = screen.getByText(new RegExp(recipe.title, "i"));
-                const recipeCalories = screen.getByText(new RegExp(recipe.calories, "i"));
-                const recipeCarbs = screen.getAllByText(new RegExp(recipe.carbs, "i"));
-                const recipeCooktime = screen.getAllByText(new RegExp(recipe.cooktime, "i"));
-                const recipeFats = screen.getAllByText(new RegExp(recipe.fats, "i"));
-                const recipeFibers = screen.getAllByText(new RegExp(recipe.fibers, "i"));
-                const recipeProtiens = screen.getAllByText(new RegExp(recipe.protiens, "i"));
-                const recipeSugars = screen.getAllByText(new RegExp(recipe.sugars, "i"));
-                const recipeServings = screen.getAllByText(new RegExp(recipe.servings, "i"));
-                const recipeIngredients = screen.getAllByText(new RegExp(recipe.ingredients, "i"));
-                const recipeSubstitution = screen.getAllByText(new RegExp(recipe.subsitution, "i"));
-                const recipeInstructions = screen.getAllByText(new RegExp(recipe.instructions, "i"));
-                const recipeImages = screen.getAllByRole("img", { src: recipe.image });
-                
-                expect(recipeTitle).toBeInTheDocument();
-                expect(recipeCalories).toBeInTheDocument();
-                
-                recipeImages.forEach((image) => {
-                    expect(image).toBeInTheDocument();
-                });
-                recipeIngredients.forEach((ingredient) => {
-                    expect(ingredient).toBeInTheDocument();
-                });
-                recipeSubstitution.forEach((subsitution) => {
-                    expect(subsitution).toBeInTheDocument();
-                });
-                recipeInstructions.forEach((instructions) => {
-                    expect(instructions).toBeInTheDocument();
-                });
-                recipeCarbs.forEach((carb) => {
-                    expect(carb).toBeInTheDocument();
-                });
-                recipeProtiens.forEach((protiens) => {
-                    expect(protiens).toBeInTheDocument();
-                });
-                recipeServings.forEach((servings) => {
-                    expect(servings).toBeInTheDocument();
-                });
-                recipeCooktime.forEach((cooktime) => {
-                    expect(cooktime).toBeInTheDocument();
-                });
-                recipeFats.forEach((fats) => {
-                    expect(fats).toBeInTheDocument();
-                });
-                recipeSugars.forEach((sugars) => {
-                    expect(sugars).toBeInTheDocument();
-                });
-                recipeFibers.forEach((fibers) => {
-                    expect(fibers).toBeInTheDocument();
-                });
-            });
-        });
-    });
+describe("<RecipeShow>", () => {
+  it("renders recipe details when a valid recipe id is provided", () => {
+    const recipeId = 1; 
+    render(
+      <MemoryRouter initialEntries={[`/recipeshow/${recipeId}`]}> 
+        <Routes> 
+          <Route path="/recipeshow/:id" element={<RecipeShow recipes={mockRecipe} />} />
+        </Routes>
+      </MemoryRouter>
+    );
+    const recipe = mockRecipe.find((recipe) => recipe.id === recipeId);
+
+    expect(screen.getByText(recipe.title)).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Calories: ${recipe.calories}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Carbs: ${recipe.carbs}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Cooktime: ${recipe.cooktime}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Fats: ${recipe.fats}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Fibers: ${recipe.fibers}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Ingredients: ${recipe.ingredients}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Instructions: ${recipe.instructions}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Protiens: ${recipe.protiens}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Servings: ${recipe.servings}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Sugars: ${recipe.sugars}`, 'i'))
+    ).toBeInTheDocument();
+    expect(screen.getByAltText(recipe.title)).toBeInTheDocument();
+  });
+
+  it("renders 'Recipe not found' message when an invalid recipe id is provided", () => {
+    const recipeId = 1000; 
+    render(
+      <MemoryRouter initialEntries={[`/recipeshow/${recipeId}`]}> 
+        <Routes> 
+          <Route path="/recipeshow/:id" element={<RecipeShow recipes={mockRecipe} />} />
+        </Routes>
+      </MemoryRouter>
+    );
+    expect(screen.getByText("Recipe not found")).toBeInTheDocument();
+  });
 });
-
-

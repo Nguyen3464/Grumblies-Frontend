@@ -3,7 +3,6 @@ const mockRecipe = [
     id: 1,
     title: "Salsa",
     ingredients: "Tomato, Onion, Cilantro, Lime,",
-    subsitution: "",
     instructions:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electron",
     servings: "4",
@@ -21,7 +20,6 @@ const mockRecipe = [
     id: 2,
     title: "Guacamole",
     ingredients: "Avacado, Tomato, White Onion, Cilantro, Lime",
-    subsitution: "",
     instructions:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electron",
     servings: "4",
@@ -39,7 +37,6 @@ const mockRecipe = [
     id: 3,
     title: "Crispy Taco Salad Shells",
     ingredients: "Flour Tortillas, Olive Oil, Salt",
-    subsitution: "",
     instructions:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electron",
     servings: "4",

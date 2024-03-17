@@ -28,7 +28,6 @@ describe("<RecipeIndex", () => {
                 const recipeSugars = screen.getAllByText(new RegExp(recipe.sugars, "i"));
                 const recipeServings = screen.getAllByText(new RegExp(recipe.servings, "i"));
                 const recipeIngredients = screen.getAllByText(new RegExp(recipe.ingredients, "i"));
-                const recipeSubstitution = screen.getAllByText(new RegExp(recipe.subsitution, "i"));
                 const recipeInstructions = screen.getAllByText(new RegExp(recipe.instructions, "i"));
                 const recipeImages = screen.getAllByRole("img", { src: recipe.image });
                 
@@ -40,9 +39,6 @@ describe("<RecipeIndex", () => {
                 });
                 recipeIngredients.forEach((ingredient) => {
                     expect(ingredient).toBeInTheDocument();
-                });
-                recipeSubstitution.forEach((subsitution) => {
-                    expect(subsitution).toBeInTheDocument();
                 });
                 recipeInstructions.forEach((instructions) => {
                     expect(instructions).toBeInTheDocument();

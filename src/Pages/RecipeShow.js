@@ -5,6 +5,7 @@ const RecipeShow = ({ recipes }) => {
   const { id } = useParams();
   let currentRecipe = recipes.find((recipe) => recipe.id === +id);
 
+
   return (
     <>
       <main>
@@ -20,11 +21,11 @@ const RecipeShow = ({ recipes }) => {
             <p>instructions: {currentRecipe.instructions}</p>
             <p>protiens: {currentRecipe.protiens}</p>
             <p>servings: {currentRecipe.servings}</p>
-            <p>subsitution: {currentRecipe.subsitution}</p>
+            <p>subsitution: {currentRecipe.substitution}</p>
             <p>sugars: {currentRecipe.sugars}</p>
             <img
               src={currentRecipe.image}
-              alt=""
+              alt={currentRecipe.title} 
               height="200px"
               width="200px"
             />
@@ -38,3 +39,4 @@ const RecipeShow = ({ recipes }) => {
 };
 
 export default RecipeShow;
+
