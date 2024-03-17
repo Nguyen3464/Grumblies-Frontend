@@ -1,0 +1,119 @@
+.active {
+  background-color: rgb(183, 246, 76);
+}
+
+nav {
+  /* height: 100px; */
+  margin: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(158, 182, 119);
+  color: rgb(65, 65, 72);
+  position: sticky;
+  top: 0;
+  border-bottom: 5px solid transparent;
+  transition: border-bottom 0.9s ease;
+}
+
+nav:hover {
+  border-bottom: 5px solid rgb(183, 246, 76);
+}
+
+nav .title {
+  display: flex;
+  /* padding: 1rem; */
+  font-family: "Neonderthaw", sans-serif;
+  /* margin-top: 5%; */
+  text-decoration: none;
+}
+
+.title:hover {
+  transform: scale(1.05);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  font-size: 2rem;
+  font-weight: 450;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgb(65, 65, 72);
+  margin-right: 10px;
+  border-radius: 0.5rem;
+}
+
+nav ul li a:not(.active):hover {
+  background-color: rgb(183, 246, 76);
+  transition: background-color 0.9s ease;
+}
+
+nav .menu {
+  display: none;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 2.5rem;
+  height: 2rem;
+}
+
+nav .menu span {
+  height: 0.4rem;
+  width: 100%;
+  background-color: rgb(65, 65, 72);
+  border-radius: 0.2rem;
+}
+
+@media (max-width: 480px) {
+  nav .menu {
+    display: flex;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  nav ul.open {
+    display: flex;
+    margin-left: -4%;
+  }
+
+  nav ul li {
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  nav ul li a {
+    margin: 0.2rem 0.5rem;
+  }
+
+  nav .title {
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav .title {
+    text-align: center;
+    margin: 0 auto;
+  }
+}
