@@ -14,7 +14,6 @@ import "./Components//Header/Header.css";
 
 function App() {
   const [recipes, setRecipes] = useState(mockRecipe);
-  console.log(recipes);
 
   return (
     <>
