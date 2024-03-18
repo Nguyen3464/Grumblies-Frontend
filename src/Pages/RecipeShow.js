@@ -13,16 +13,18 @@ const RecipeShow = ({ recipes }) => {
           <section key={currentRecipe.id}>
             <p>{currentRecipe.title}</p>
             <p>Calories: {currentRecipe.calories}</p>
-            <p>carbs: {currentRecipe.carbs}</p>
-            <p>cooktime: {currentRecipe.cooktime}</p>
-            <p>fats: {currentRecipe.fats}</p>
-            <p>fibers: {currentRecipe.fibers}</p>
-            <p>ingredients: {currentRecipe.ingredients}</p>
-            <p>instructions: {currentRecipe.instructions}</p>
-            <p>protiens: {currentRecipe.protiens}</p>
-            <p>servings: {currentRecipe.servings}</p>
-            <p>subsitution: {currentRecipe.substitution}</p>
-            <p>sugars: {currentRecipe.sugars}</p>
+            <p>Carbs: {currentRecipe.carbs}</p>
+            <p>Cook time: {currentRecipe.cooktime}</p>
+            <p>Fats: {currentRecipe.fats}</p>
+            <p>Fibers: {currentRecipe.fibers}</p>
+            <p>Ingredients: {currentRecipe.ingredients}</p>
+            <p>Instructions: {currentRecipe.instructions}</p>
+            <p>Protiens: {currentRecipe.protiens}</p>
+            <p>Servings: {currentRecipe.servings}</p>
+            <p>Sugars: {currentRecipe.sugars}</p>
+            <p>Description: {currentRecipe.description}</p>
+            <p>Total Time: {currentRecipe.totaltime}</p>
+            <p>Prep Time: {currentRecipe.preptime}</p>
             <img
               src={currentRecipe.image}
               alt={currentRecipe.title} 
