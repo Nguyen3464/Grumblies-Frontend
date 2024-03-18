@@ -7,10 +7,11 @@ import Home from "./Pages/Home.js";
 import Login from "./Pages/Login.js";
 import RecipeIndex from "./Pages/RecipeIndex.js";
 import RecipeShow from "./Pages/RecipeShow.js";
-import RecipeNew from "./Pages/RecipeNew.js";
+import RecipeNew from "./Pages/RecipeNew/RecipeNew.js";
 import RecipeEdit from "./Pages/RecipeEdit.js";
 import NotFound from "./Pages/NotFound.js";
-import "./Components//Header/Header.css";
+import "./Components/Header/Header.css";
+import "./Pages/RecipeNew/RecipeNew.css"
 
 function App() {
   const [recipes, setRecipes] = useState(mockRecipe);
@@ -23,7 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/index" element={<RecipeIndex recipes={recipes} />} />
         <Route
-          path="/recipeshow/:id"
+          path="/show/:id"
           element={<RecipeShow recipes={recipes} />}
         />
         <Route path="/new" element={<RecipeNew />} />

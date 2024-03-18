@@ -24,7 +24,13 @@ describe("<RecipeShow>", () => {
       screen.getByText(new RegExp(`Carbs: ${recipe.carbs}`, 'i'))
     ).toBeInTheDocument();
     expect(
-      screen.getByText(new RegExp(`Cooktime: ${recipe.cooktime}`, 'i'))
+      screen.getByText(new RegExp(`Cook time: ${recipe.cooktime}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Prep time: ${recipe.preptime}`, 'i'))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Total time: ${recipe.totaltime}`, 'i'))
     ).toBeInTheDocument();
     expect(
       screen.getByText(new RegExp(`Fats: ${recipe.fats}`, 'i'))
