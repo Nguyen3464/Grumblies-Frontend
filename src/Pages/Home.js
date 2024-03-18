@@ -4,10 +4,8 @@ import React from "react";
 const Home = () => {
   return (
     <>
-    <div>Home</div>
-      {/* <NavLink to={"/new"}>
-        link to creating recipe
-      </NavLink> */}
+      <div>Home</div>
+      {/* <NavLink to={"/new"}>link to creating recipe</NavLink> */}
     </>
   );
 };

@@ -16,6 +16,10 @@ import "./Pages/RecipeNew/RecipeNew.css"
 function App() {
   const [recipes, setRecipes] = useState(mockRecipe);
 
+  const createRecipe = (recipe) => {
+    console.log(recipe)
+  }
+
   return (
     <>
       <Header />
@@ -27,7 +31,7 @@ function App() {
           path="/show/:id"
           element={<RecipeShow recipes={recipes} />}
         />
-        <Route path="/new" element={<RecipeNew />} />
+        <Route path="/new" element={<RecipeNew createRecipe={createRecipe} />} />
         <Route path="/edit" element={<RecipeEdit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

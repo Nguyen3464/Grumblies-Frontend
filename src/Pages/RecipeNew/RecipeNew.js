@@ -1,69 +1,144 @@
-import React from "react";
-import { Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import React, { useState } from "react";
+import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 
-const RecipeNew = () => {
+const RecipeNew = ({ createRecipe }) => {
+  const [newRecipe, setNewRecipe] = useState({
+    title: "",
+    description: "",
+    totaltime: "",
+    preptime: "",
+    cooktime: "",
+    servings: "",
+    ingredients: "",
+    instructions: "",
+    calories: "",
+    carbs: "",
+    fats: "",
+    fiber: "",
+    protein: "",
+    sugar: "",
+    image: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setNewRecipe({ ...newRecipe, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    createRecipe(newRecipe);
+    navigate("/index");
+  };
+
   return (
     <>
       <Form className="form">
         <Row>
           <Col md={6}>
             <FormGroup>
-              <Label for="Title">Recipe Name</Label>
-              <Input id="Title" placeholder="Example Name" />
+              <Label for="title">Recipe Name</Label>
+              <Input
+                id="title"
+                type="text"
+                placeholder="Recipe Name"
+                name="title"
+                onChange={handleChange}
+                value={newRecipe.title}
+              />
             </FormGroup>
           </Col>
           <FormGroup>
-            <Label for="Description">Description</Label>
+            <Label for="description">Description</Label>
             <Input
-              id="Description"
-              placeholder="Describe you wonderful culinary creation"
+              id="description"
+              type="textarea"
+              placeholder="Describe your wonderful culinary creation"
+              name="description"
+              onChange={handleChange}
+              value={newRecipe.description}
             />
           </FormGroup>
           <Col md={6}>
             <FormGroup>
-              <Label for="Total Time">Total Time</Label>
-              <Input id="TotalTime" placeholder="32 minutes" />
+              <Label for="totaltime">Total Time</Label>
+              <Input
+                id="totaltime"
+                type="text"
+                placeholder="32 minutes"
+                name="totaltime"
+                onChange={handleChange}
+                value={newRecipe.totaltime}
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Prep Time">Prep Time</Label>
-              <Input id="PrepTime" placeholder="20 minutes" />
+              <Label for="preptime">Prep Time</Label>
+              <Input
+                id="preptime"
+                type="text"
+                placeholder="20 minutes"
+                name="preptime"
+                onChange={handleChange}
+                value={newRecipe.preptime}
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Cook time">Cook Time</Label>
-              <Input id="CookTime" placeholder="10 minutes" />
+              <Label for="cooktime">Cook Time</Label>
+              <Input
+                id="cooktime"
+                type="text"
+                placeholder="10 minutes"
+                name="cooktime"
+                onChange={handleChange}
+                value={newRecipe.cooktime}
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Servings">Servings</Label>
-              <Input id="Servings" placeholder="for 6 servings" />
+              <Label for="servings">Servings</Label>
+              <Input
+                id="servings"
+                type="text"
+                placeholder="for 6 servings"
+                name="servings"
+                onChange={handleChange}
+                value={newRecipe.servings}
+              />
             </FormGroup>
           </Col>
         </Row>
         <Row>
           <Col md={6}>
             <FormGroup>
-              <Label for="Ingredients">Ingredients</Label>
+              <Label for="ingredients">Ingredients</Label>
               <Input
-                id="Ingredients"
+                id="ingredients"
                 type="textarea"
                 rows={6}
-                placeholder={`Seperate ingredients on new lines\n1 lb chicken breast, cubed\nsalt, to taste\npepper, to taste\n1 lb broccoli florets\n8 oz mushroom, sliced`}
+                placeholder="Seperate ingredients on new lines\n1 lb chicken breast, cubed\nsalt, to taste\npepper, to taste\n1 lb broccoli florets\n8 oz mushroom, sliced"
+                name="ingredients"
+                onChange={handleChange}
+                value={newRecipe.ingredients}
               />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Instructions">Instructions</Label>
+              <Label for="instructions">Instructions</Label>
               <Input
-                id="Instructions"
+                id="instructions"
                 type="textarea"
                 rows={6}
-                placeholder={`Seperate instructions on new lines\nIn a large pan on medium-high heat, add 1 tablespoon of oil. \nIn the same pan, heat 1 tablespoon of oil and add mushrooms.\nAdd 1 tablespoon of oil to the pan and sauté garlic and ginger until fragrant.\nReturn the chicken and vegetables to the saucy pan, stir until heated through.\nServe with hot rice or noodles.`}
+                placeholder="Seperate instructions on new lines\nIn a large pan on medium-high heat, add 1 tablespoon of oil. \nIn the same pan, heat 1 tablespoon of oil and add mushrooms.\nAdd 1 tablespoon of oil to the pan and sauté garlic and ginger until fragrant.\nReturn the chicken and vegetables to the saucy pan, stir until heated through.\nServe with hot rice or noodles."
+                name="instructions"
+                onChange={handleChange}
+                value={newRecipe.instructions}
               />
             </FormGroup>
           </Col>
@@ -71,50 +146,101 @@ const RecipeNew = () => {
         <Row>
           <Col md={6}>
             <FormGroup>
-              <Label for="Calories">Calories</Label>
-              <Input id="Calories" placeholder="Calories" />
+              <Label for="calories">Calories</Label>
+              <Input
+                id="calories"
+                type="text"
+                placeholder="Calories"
+                name="calories"
+                onChange={handleChange}
+                value={newRecipe.calories}
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Carbs">Carbs</Label>
-              <Input id="Carbs" placeholder="Carbs" />
+              <Label for="carbs">Carbs</Label>
+              <Input
+                id="carbs"
+                type="text"
+                placeholder="Carbs"
+                name="carbs"
+                onChange={handleChange}
+                value={newRecipe.carbs}
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Fat">Fat</Label>
-              <Input id="Fat" placeholder="Fat" />
+              <Label for="fat">Fat</Label>
+              <Input
+                id="fat"
+                type="text"
+                placeholder="Fat"
+                name="fat"
+                onChange={handleChange}
+                value={newRecipe.fat}
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Fiber">Fiber</Label>
-              <Input id="Fiber" placeholder="7g" />
+              <Label for="fiber">Fiber</Label>
+              <Input
+                id="fiber"
+                type="text"
+                placeholder="7g"
+                name="fiber"
+                onChange={handleChange}
+                value={newRecipe.fiber}
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Protein">Protein</Label>
-              <Input id="Protein" placeholder="28g" />
+              <Label for="protein">Protein</Label>
+              <Input
+                id="protein"
+                type="text"
+                placeholder="28g"
+                name="protein"
+                onChange={handleChange}
+                value={newRecipe.protein}
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="Sugar">Sugar</Label>
-              <Input id="Sugar" placeholder="3g" />
+              <Label for="sugar">Sugar</Label>
+              <Input
+                id="sugar"
+                type="text"
+                placeholder="3g"
+                name="sugar"
+                onChange={handleChange}
+                value={newRecipe.sugar}
+              />
             </FormGroup>
           </Col>
         </Row>
         <FormGroup>
-          <Label for="Image">Image</Label>
-          <Input id="Image" placeholder="Image URL" />
+          <Label for="image">Image</Label>
+          <Input
+            id="image"
+            type="textarea"
+            placeholder="Image URL"
+            name="image"
+            onChange={handleChange}
+            value={newRecipe.image}
+          />
         </FormGroup>
-        total time ! add to index,show page,
-        index,show test, add column to recipe table 
-        prep time ! add to
-        index,show page, index,show test, add column to recipe table
       </Form>
+      <Button 
+        color="primary" 
+        onClick={handleSubmit} 
+        name="submit">
+        Submit Recipe
+      </Button>
     </>
   );
 };
