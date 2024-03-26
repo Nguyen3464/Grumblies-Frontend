@@ -3,15 +3,12 @@ import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
 import { useParams, useNavigate} from "react-router-dom"; 
 
 
-import DeleteModal from "./RecipeDelete";
+// import DeleteModal from "./RecipeDelete";
 
 const RecipeEdit = ({ recipes, updateRecipe, deleteRecipe }) => {
   const navigate = useNavigate();
-
-
   const { id } = useParams();
-  let currentRecipe = recipes?.find((recipe) => recipe.id === +id);
-
+  const currentRecipe = recipes?.find((recipe) => recipe.id === +id);
   const [editRecipe, setEditRecipe] = useState(() => {
     if (currentRecipe) {
       return {
@@ -26,9 +23,9 @@ const RecipeEdit = ({ recipes, updateRecipe, deleteRecipe }) => {
         calories: currentRecipe.calories,
         carbs: currentRecipe.carbs,
         fats: currentRecipe.fats,
-        fiber: currentRecipe.fiber,
-        protein: currentRecipe.protein,
-        sugar: currentRecipe.sugar,
+        fiber: currentRecipe.fibers,
+        protein: currentRecipe.proteins,
+        sugar: currentRecipe.sugars,
         image: currentRecipe.image,
       };
     } else {
@@ -45,12 +42,16 @@ const RecipeEdit = ({ recipes, updateRecipe, deleteRecipe }) => {
     navigate("/index");
   };
 
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const toggleDeleteModal = () => {
-    setIsDeleteModalOpen(!isDeleteModalOpen);
+  // const toggleDeleteModal = () => {
+  //   setIsDeleteModalOpen(!isDeleteModalOpen);
+  // };
+
+  const handleDelete = () => {
+    deleteRecipe(currentRecipe.id);
+    navigate("/index");
   };
-
 
   return (
     <div className="container">
@@ -261,10 +262,10 @@ const RecipeEdit = ({ recipes, updateRecipe, deleteRecipe }) => {
       <Button color="primary" onClick={handleSubmit} name="submit">
         Submit Updated Recipe
       </Button>
-      <Button color="danger" onClick={toggleDeleteModal}>
+      {/* <Button color="danger" onClick={toggleDeleteModal}> */}
+      <Button color="danger" onClick={handleDelete} >
         Delete Recipe
       </Button>
-      <DeleteModal isOpen={isDeleteModalOpen} toggle={toggleDeleteModal} />
     </div>
   );
 };

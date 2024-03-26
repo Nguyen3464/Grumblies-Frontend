@@ -15,9 +15,9 @@ const RecipeNew = ({ createRecipe }) => {
     calories: "",
     carbs: "",
     fats: "",
-    fiber: "",
-    protein: "",
-    sugar: "",
+    fibers: "",
+    proteins: "",
+    sugars: "",
     image: "",
   });
 
@@ -178,7 +178,7 @@ const RecipeNew = ({ createRecipe }) => {
                   id="fat"
                   type="text"
                   placeholder="Fat"
-                  name="fats" 
+                  name="fats"
                   onChange={handleChange}
                   value={newRecipe.fats}
                 />
@@ -187,40 +187,40 @@ const RecipeNew = ({ createRecipe }) => {
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="fiber">Fiber</Label>
+              <Label for="fibers">Fiber</Label>
               <Input
-                id="fiber"
+                id="fibers"
                 type="text"
                 placeholder="7g"
-                name="fiber"
+                name="fibers"
                 onChange={handleChange}
-                value={newRecipe.fiber}
+                value={newRecipe.fibers}
               />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="protein">Protein</Label>
+              <Label for="proteins">Proteins</Label>
               <Input
-                id="protein"
+                id="proteins"
                 type="text"
                 placeholder="28g"
-                name="protein"
+                name="proteins"
                 onChange={handleChange}
-                value={newRecipe.protein}
+                value={newRecipe.proteins}
               />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="sugar">Sugar</Label>
+              <Label for="sugars">Sugar</Label>
               <Input
-                id="sugar"
+                id="sugars"
                 type="text"
                 placeholder="3g"
-                name="sugar"
+                name="sugars"
                 onChange={handleChange}
-                value={newRecipe.sugar}
+                value={newRecipe.sugars}
               />
             </FormGroup>
           </Col>
