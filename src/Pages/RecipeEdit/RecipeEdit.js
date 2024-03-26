@@ -1,39 +1,60 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom"; 
 
-const RecipeNew = ({ createRecipe }) => {
-  const [newRecipe, setNewRecipe] = useState({
-    title: "",
-    description: "",
-    totaltime: "",
-    preptime: "",
-    cooktime: "",
-    servings: "",
-    ingredients: "",
-    instructions: "",
-    calories: "",
-    carbs: "",
-    fats: "",
-    fiber: "",
-    protein: "",
-    sugar: "",
-    image: "",
-  });
 
+import DeleteModal from "./RecipeDelete";
+
+const RecipeEdit = ({ recipes, updateRecipe, deleteRecipe }) => {
   const navigate = useNavigate();
 
+
+  const { id } = useParams();
+  let currentRecipe = recipes?.find((recipe) => recipe.id === +id);
+
+  const [editRecipe, setEditRecipe] = useState(() => {
+    if (currentRecipe) {
+      return {
+        title: currentRecipe.title,
+        description: currentRecipe.description,
+        totaltime: currentRecipe.totaltime,
+        preptime: currentRecipe.preptime,
+        cooktime: currentRecipe.cooktime,
+        servings: currentRecipe.servings,
+        ingredients: currentRecipe.ingredients,
+        instructions: currentRecipe.instructions,
+        calories: currentRecipe.calories,
+        carbs: currentRecipe.carbs,
+        fats: currentRecipe.fats,
+        fiber: currentRecipe.fiber,
+        protein: currentRecipe.protein,
+        sugar: currentRecipe.sugar,
+        image: currentRecipe.image,
+      };
+    } else {
+      return null;
+    }
+  });
+
   const handleChange = (e) => {
-    setNewRecipe({ ...newRecipe, [e.target.name]: e.target.value });
+    setEditRecipe({ ...editRecipe, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
-    createRecipe(newRecipe);
+    updateRecipe(editRecipe, currentRecipe.id);
     navigate("/index");
   };
 
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const toggleDeleteModal = () => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
+  };
+
+
   return (
-    <>
+    <div className="container">
+      <h2>Edit Recipe</h2>
       <Form className="form">
         <Row>
           <Col md={6}>
@@ -45,7 +66,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="Recipe Name"
                 name="title"
                 onChange={handleChange}
-                value={newRecipe.title}
+                value={editRecipe.title}
               />
             </FormGroup>
           </Col>
@@ -57,7 +78,7 @@ const RecipeNew = ({ createRecipe }) => {
               placeholder="Describe your wonderful culinary creation"
               name="description"
               onChange={handleChange}
-              value={newRecipe.description}
+              value={editRecipe.description}
             />
           </FormGroup>
           <Col md={6}>
@@ -69,7 +90,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="32 minutes"
                 name="totaltime"
                 onChange={handleChange}
-                value={newRecipe.totaltime}
+                value={editRecipe.totaltime}
               />
             </FormGroup>
           </Col>
@@ -82,7 +103,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="20 minutes"
                 name="preptime"
                 onChange={handleChange}
-                value={newRecipe.preptime}
+                value={editRecipe.preptime}
               />
             </FormGroup>
           </Col>
@@ -95,7 +116,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="10 minutes"
                 name="cooktime"
                 onChange={handleChange}
-                value={newRecipe.cooktime}
+                value={editRecipe.cooktime}
               />
             </FormGroup>
           </Col>
@@ -108,7 +129,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="for 6 servings"
                 name="servings"
                 onChange={handleChange}
-                value={newRecipe.servings}
+                value={editRecipe.servings}
               />
             </FormGroup>
           </Col>
@@ -124,7 +145,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="Seperate ingredients on new lines\n1 lb chicken breast, cubed\nsalt, to taste\npepper, to taste\n1 lb broccoli florets\n8 oz mushroom, sliced"
                 name="ingredients"
                 onChange={handleChange}
-                value={newRecipe.ingredients}
+                value={editRecipe.ingredients}
               />
             </FormGroup>
           </Col>
@@ -138,7 +159,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="Seperate instructions on new lines\nIn a large pan on medium-high heat, add 1 tablespoon of oil. \nIn the same pan, heat 1 tablespoon of oil and add mushrooms.\nAdd 1 tablespoon of oil to the pan and sauté garlic and ginger until fragrant.\nReturn the chicken and vegetables to the saucy pan, stir until heated through.\nServe with hot rice or noodles."
                 name="instructions"
                 onChange={handleChange}
-                value={newRecipe.instructions}
+                value={editRecipe.instructions}
               />
             </FormGroup>
           </Col>
@@ -153,7 +174,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="Calories"
                 name="calories"
                 onChange={handleChange}
-                value={newRecipe.calories}
+                value={editRecipe.calories}
               />
             </FormGroup>
           </Col>
@@ -166,25 +187,25 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="Carbs"
                 name="carbs"
                 onChange={handleChange}
-                value={newRecipe.carbs}
+                value={editRecipe.carbs}
               />
             </FormGroup>
           </Col>
+
           <Col md={6}>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="fat">Fat</Label>
-                <Input
-                  id="fat"
-                  type="text"
-                  placeholder="Fat"
-                  name="fats" 
-                  onChange={handleChange}
-                  value={newRecipe.fats}
-                />
-              </FormGroup>
-            </Col>
+            <FormGroup>
+              <Label for="fat">Fat</Label>
+              <Input
+                id="fat"
+                type="text"
+                placeholder="Fat"
+                name="fats"
+                onChange={handleChange}
+                value={editRecipe.fats}
+              />
+            </FormGroup>
           </Col>
+
           <Col md={6}>
             <FormGroup>
               <Label for="fiber">Fiber</Label>
@@ -194,7 +215,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="7g"
                 name="fiber"
                 onChange={handleChange}
-                value={newRecipe.fiber}
+                value={editRecipe.fiber}
               />
             </FormGroup>
           </Col>
@@ -207,7 +228,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="28g"
                 name="protein"
                 onChange={handleChange}
-                value={newRecipe.protein}
+                value={editRecipe.protein}
               />
             </FormGroup>
           </Col>
@@ -220,7 +241,7 @@ const RecipeNew = ({ createRecipe }) => {
                 placeholder="3g"
                 name="sugar"
                 onChange={handleChange}
-                value={newRecipe.sugar}
+                value={editRecipe.sugar}
               />
             </FormGroup>
           </Col>
@@ -233,15 +254,19 @@ const RecipeNew = ({ createRecipe }) => {
             placeholder="Image URL"
             name="image"
             onChange={handleChange}
-            value={newRecipe.image}
+            value={editRecipe.image}
           />
         </FormGroup>
       </Form>
       <Button color="primary" onClick={handleSubmit} name="submit">
-        Submit Recipe
+        Submit Updated Recipe
       </Button>
-    </>
+      <Button color="danger" onClick={toggleDeleteModal}>
+        Delete Recipe
+      </Button>
+      <DeleteModal isOpen={isDeleteModalOpen} toggle={toggleDeleteModal} />
+    </div>
   );
 };
 
-export default RecipeNew;
+export default RecipeEdit;
