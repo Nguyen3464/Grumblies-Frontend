@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const RecipeShow = ({ recipes }) => {
   const { id } = useParams();
@@ -31,6 +32,10 @@ const RecipeShow = ({ recipes }) => {
               height="200px"
               width="200px"
             />
+<NavLink to={`/edit/${id}`} className="nav-link">
+  Edit Recipe Profile
+</NavLink>
+
           </section>
         ) : (
           <p>Recipe not found</p>
