@@ -1,61 +1,81 @@
 .active {
-  background-color: rgb(183, 246, 76);
+  background-color: whitesmoke;
 }
 
 nav {
-  /* height: 100px; */
-  margin: 0;
-
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgb(158, 182, 119);
+  padding-top: 2%;
+  justify-content: flex-end;
+  background-color: rgb(24, 119, 242);
   color: rgb(65, 65, 72);
   position: sticky;
   top: 0;
-  border-bottom: 5px solid transparent;
-  transition: border-bottom 0.9s ease;
 }
 
-nav:hover {
-  border-bottom: 5px solid rgb(183, 246, 76);
-}
-
-nav .title {
-  display: flex;
-  /* padding: 1rem; */
-  font-family: "Neonderthaw", sans-serif;
-  /* margin-top: 5%; */
+nav h1 {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  z-index: 1;
+  font-size: 6em;
+  font-weight: bold;
+  color: black;
+  text-shadow: -2.5px -2.5px 0 #fff, 2.5px -2.5px 0 #fff, -2.5px 2.5px 0 #fff,
+    2.5px 2.5px 0 #fff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-family: "Modak", system-ui;
+  font-weight: 300;
+  font-style: normal;
   text-decoration: none;
-}
-
-.title:hover {
-  transform: scale(1.05);
 }
 
 nav ul {
   display: flex;
   list-style: none;
+  margin-left: 45%;
 }
 
 nav ul li {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: 450;
+  margin-right: 20px;
 }
 
 nav ul li a {
   text-decoration: none;
   color: rgb(65, 65, 72);
-  margin-right: 10px;
   border-radius: 0.5rem;
 }
 
-nav ul li a:not(.active):hover {
-  background-color: rgb(183, 246, 76);
-  transition: background-color 0.9s ease;
+nav ul li a.active {
+  padding: 4%;
+  white-space: nowrap; 
+  background-color: whitesmoke;
+  transition: background-color 1.4s ease;
 }
 
-nav .menu {
+nav ul li:last-child {
+  display: flex;
+  align-items: center;
+  margin-top: -5px;
+  width: auto;
+}
+nav ul li:last-child a {
+  white-space: nowrap; 
+}
+
+nav ul li:last-child input[type="text"] {
+  padding: 8px 12px; 
+  border-radius: 20px; 
+  height: 40px;
+}
+
+nav ul li:last-child input[type="text"]:focus {
+  outline: none;
+}
+
+/* nav .menu {
   display: none;
   position: absolute;
   top: 0.75rem;
@@ -71,7 +91,7 @@ nav .menu span {
   width: 100%;
   background-color: rgb(65, 65, 72);
   border-radius: 0.2rem;
-}
+} */
 
 @media (max-width: 480px) {
   nav .menu {
@@ -81,6 +101,7 @@ nav .menu span {
   nav {
     flex-direction: column;
     align-items: flex-start;
+    height: auto;
   }
 
   nav ul {
@@ -114,6 +135,6 @@ nav .menu span {
 
   nav .title {
     text-align: center;
-    margin: 0 auto;
+    margin-top: 30%;
   }
 }

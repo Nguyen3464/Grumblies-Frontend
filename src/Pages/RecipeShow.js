@@ -6,7 +6,6 @@ const RecipeShow = ({ recipes }) => {
   const { id } = useParams();
   let currentRecipe = recipes.find((recipe) => recipe.id === +id);
 
-
   return (
     <>
       <main>
@@ -28,14 +27,13 @@ const RecipeShow = ({ recipes }) => {
             <p>Prep Time: {currentRecipe.preptime}</p>
             <img
               src={currentRecipe.image}
-              alt={currentRecipe.title} 
+              alt={currentRecipe.title}
               height="200px"
               width="200px"
             />
-<NavLink to={`/edit/${id}`} className="nav-link">
-  Edit Recipe Profile
-</NavLink>
-
+            <NavLink to={`/edit/${id}`} className="nav-link">
+              Edit Recipe Profile
+            </NavLink>
           </section>
         ) : (
           <p>Recipe not found</p>
@@ -46,4 +44,3 @@ const RecipeShow = ({ recipes }) => {
 };
 
 export default RecipeShow;
-
