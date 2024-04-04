@@ -20,7 +20,6 @@ const RecipeNew = ({ createRecipe, currentUser }) => {
     proteins: "",
     sugars: "",
     image: "",
-
   });
 
   const navigate = useNavigate();

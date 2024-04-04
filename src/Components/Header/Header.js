@@ -8,13 +8,13 @@ const Header = ({ currentUser, logout }) => {
   const handleLogoutClick = () => {
     setMenuOpen(false);
     logout();
-    navigate("/"); // Navigate to the home page after logout
+    navigate("/");
   };
 
   return (
     <nav className="nav">
       <Link to="/" className="title">
-        <h1>Grumblies</h1>
+        <h1 class="contour-border">Grumblies</h1>
       </Link>
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
         <span></span>
@@ -31,10 +31,12 @@ const Header = ({ currentUser, logout }) => {
               <NavLink to="/index">Recipes</NavLink>
             </li>
             <li>
-              <NavLink to="/new">Create Recipe</NavLink>
+              <NavLink to="/new">Add Recipe</NavLink>
             </li>
             <li>
-              <NavLink to="/" onClick={handleLogoutClick}>Logout</NavLink> {/* Handle logout click separately */}
+              <NavLink to="/" onClick={handleLogoutClick}>
+                Logout
+              </NavLink>
             </li>
           </>
         ) : (
@@ -50,6 +52,13 @@ const Header = ({ currentUser, logout }) => {
             </li>
           </>
         )}
+        <li>
+          <input
+            type="text"
+            placeholder="👨‍🍳"
+            style={{ fontFamily: "Arial, FontAwesome" }}
+          />
+        </li>
       </ul>
     </nav>
   );
