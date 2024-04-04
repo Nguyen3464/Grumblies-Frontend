@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 
-const RecipeNew = ({ createRecipe }) => {
+const RecipeNew = ({ createRecipe, currentUser }) => {
   const [newRecipe, setNewRecipe] = useState({
+    user_id: currentUser?.id,
     title: "",
     description: "",
     totaltime: "",
@@ -19,6 +20,7 @@ const RecipeNew = ({ createRecipe }) => {
     proteins: "",
     sugars: "",
     image: "",
+
   });
 
   const navigate = useNavigate();
